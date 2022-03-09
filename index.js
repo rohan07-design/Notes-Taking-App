@@ -28,11 +28,22 @@ function disappear() {
 
 //adding the data into table
 var addData = () => {
-    let t = title.value;
-    let task = desc.value;
+    //getting value from input box
+    var data = {  
+        title1 : title.value,
+        desc1 : desc.value
+    }
+
+    let str = JSON.stringify(data)
+    //stored in localstorage
+    localStorage.setItem(data.title1,str)
+    let allData1 = localStorage.getItem(data.title1);
+    let allData = JSON.parse(allData1)
+    
     var createTable = document.getElementById("body")
     var createBody = document.createElement('tr');
-    createBody.innerHTML = '<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td><td>'+t+'</td><td>'+task+'</td>'
+
+    createBody.innerHTML = '<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td><td>'+ allData.title1 +'</td><td>'+ allData.desc1 +'</td>'
     createTable.append(createBody)
 }
 
