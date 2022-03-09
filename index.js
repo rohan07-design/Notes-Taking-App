@@ -15,7 +15,7 @@ var clearInput = () => {
 var notify = document.getElementById('live')
 var btn = document.getElementById('liveAlertBtn')
 
-function alert(message, type) {
+function getalert(message, type) {
     var newDiv = document.createElement('div');
     newDiv.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
     notify.append(newDiv)
@@ -26,15 +26,29 @@ function disappear() {
     notify.style.display = "none";    
 }
 
+//adding the data into table
+var addData = () => {
+    let t = title.value;
+    let task = desc.value;
+    var createTable = document.getElementById("body")
+    var createBody = document.createElement('tr');
+    createBody.innerHTML = '<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td><td>'+t+'</td><td>'+task+'</td>'
+    createTable.append(createBody)
+}
+
+
 if(alert) {
     btn.addEventListener('click',() => {
         if(title.value === "" && desc.value === "") {
             alert("Please Enter all the data fields..!!", "danger")
             setTimeout(disappear,2000)
         } else {
-            alert("Task is added successfully..!!", "success")
+            getalert("Task is added successfully..!!", "success")
             setTimeout(disappear,2000)
             setTimeout(clearInput, 3000)
+            addData()
         }
     });
-}
+} 
+
+
